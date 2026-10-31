@@ -1,0 +1,334 @@
+/* =========================================================
+   Onboarding Buddy – style.css
+   ========================================================= */
+
+/* ── 1. DESIGN TOKENS ── */
+:root {
+  --teal:        #0A7C6E;
+  --teal-dark:   #085f55;
+  --teal-light:  #d1f0ec;
+  --amber:       #F59E0B;
+  --amber-dark:  #d97706;
+  --bg:          #F8FAFC;
+  --surface:     #ffffff;
+  --border:      #e2e8f0;
+  --text:        #0F172A;
+  --text-muted:  #64748B;
+  --text-done:   #94a3b8;
+  --radius:      12px;
+  --shadow:      0 2px 8px rgba(0,0,0,.08), 0 1px 3px rgba(0,0,0,.05);
+  --font:        system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* ── 2. RESET & BASE ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── 3. HEADER ── */
+.site-header {
+  background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+  color: #fff;
+  text-align: center;
+  padding: 44px 24px 40px;
+  border-bottom: 4px solid var(--amber);
+}
+
+.app-title {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  text-shadow: 0 1px 3px rgba(0,0,0,.18);
+}
+
+.app-subtitle {
+  margin-top: 8px;
+  font-size: 1rem;
+  opacity: 0.92;
+  max-width: 420px;
+  margin-inline: auto;
+}
+
+/* ── 4. MAIN LAYOUT ── */
+.main-content {
+  flex: 1;
+  width: 100%;
+  max-width: 620px;
+  margin: 32px auto;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── 5. CARD ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px 24px;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+/* ── 6. PROGRESS CARD ── */
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.progress-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.progress-percent {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--teal);
+}
+
+/* Track + fill */
+.progress-track {
+  background: var(--teal-light);
+  border-radius: 999px;
+  height: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--teal);
+  border-radius: 999px;
+  width: 0%;
+  transition: width 0.35s ease, background 0.4s ease;
+}
+
+/* Green when all tasks are done */
+.progress-fill.complete {
+  background: #16a34a;
+}
+
+/* ── 7. TASK LIST ── */
+.task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Each task item */
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  border-left: 3px solid transparent;
+  transition: background 0.18s, border-color 0.18s, box-shadow 0.18s, transform 0.15s;
+  cursor: default;
+}
+
+.task-item:hover {
+  background: #f0faf8;
+  border-color: var(--border);
+  border-left-color: var(--teal);
+  box-shadow: 0 2px 8px rgba(10,124,110,.09);
+  transform: translateX(3px);
+}
+
+/* Checkbox — custom styled */
+.task-checkbox {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  accent-color: var(--teal);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* Task label */
+.task-label {
+  flex: 1;
+  font-size: 0.95rem;
+  color: var(--text);
+  cursor: pointer;
+  transition: color 0.2s, text-decoration 0.2s;
+  word-break: break-word;
+}
+
+/* Done state */
+.task-item.done .task-label {
+  text-decoration: line-through;
+  color: var(--text-done);
+}
+
+.task-item.done {
+  opacity: 0.72;
+}
+
+/* Delete button — always visible */
+.task-delete {
+  flex-shrink: 0;
+  background: none;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 3px 7px;
+  border-radius: 6px;
+  opacity: 1;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  line-height: 1;
+}
+
+.task-delete:hover {
+  background: #fef2f2;
+  color: #dc2626;
+  border-color: #fecaca;
+}
+
+.task-delete:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
+/* ── Completion message ── */
+.completion-msg {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 10px 16px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  color: #166534;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.completion-msg.show {
+  display: flex;
+}
+
+.completion-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+/* ── 8. ADD FORM ── */
+.add-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.task-input {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font);
+  font-size: 0.925rem;
+  color: var(--text);
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.task-input:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(10,124,110,.16);
+}
+
+.task-input.invalid {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220,38,38,.13);
+}
+
+/* ── 9. BUTTONS ── */
+.btn {
+  font-family: var(--font);
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 8px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  white-space: nowrap;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+}
+
+.btn:active { transform: translateY(1px); }
+
+.btn-primary {
+  background: var(--teal);
+  color: #fff;
+}
+
+.btn-primary:hover { background: var(--teal-dark); }
+
+/* Error message */
+.add-error {
+  margin-top: 8px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #dc2626;
+}
+
+/* ── 10. FOOTER ── */
+.site-footer {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  padding: 16px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+
+/* ── 11. ACCESSIBILITY UTILITY ── */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── 12. RESPONSIVE ── */
+@media (max-width: 480px) {
+  .app-title { font-size: 1.4rem; }
+  .card { padding: 16px; }
+  .add-form { flex-direction: column; }
+  .btn { width: 100%; justify-content: center; }
+}

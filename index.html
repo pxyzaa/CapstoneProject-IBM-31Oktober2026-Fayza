@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onboarding Buddy</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <h1 class="app-title">Onboarding Buddy</h1>
+    <p class="app-subtitle">Selamat datang! Ikuti checklist ini agar minggu pertamamu berjalan lancar.</p>
+  </header>
+
+  <main class="main-content">
+
+    <!-- ===== PROGRESS CARD ===== -->
+    <section class="card progress-card" aria-label="Progress tugas">
+      <div class="progress-header">
+        <span class="progress-label" id="progress-text">0 dari 8 selesai (0%)</span>
+        <span class="progress-percent" id="progress-percent">0%</span>
+      </div>
+      <div class="progress-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-labelledby="progress-text">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <!-- Pesan selamat saat semua tugas selesai -->
+      <div class="completion-msg" id="completion-msg" role="status" aria-live="polite">
+        <span class="completion-icon" aria-hidden="true"></span>
+        <span>Selamat, semua tugas selesai! Kamu siap memulai perjalananmu.</span>
+      </div>
+    </section>
+
+    <!-- ===== CHECKLIST CARD ===== -->
+    <section class="card checklist-card" aria-label="Daftar tugas">
+      <h2 class="card-title">Tugas Minggu Pertama</h2>
+      <ul class="task-list" id="task-list" role="list"></ul>
+    </section>
+
+    <!-- ===== ADD TASK CARD ===== -->
+    <section class="card add-card" aria-label="Tambah tugas baru">
+      <h2 class="card-title">Tambah Tugas Baru</h2>
+      <div class="add-form">
+        <label for="new-task-input" class="visually-hidden">Nama tugas baru</label>
+        <input
+          type="text"
+          id="new-task-input"
+          class="task-input"
+          placeholder="Tulis tugas baru di sini…"
+          maxlength="120"
+          aria-describedby="add-error"
+        />
+        <button id="btn-add" class="btn btn-primary" type="button">+ Tambah</button>
+      </div>
+      <p id="add-error" class="add-error" role="alert" aria-live="polite" hidden></p>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <p>Onboarding Buddy &mdash; semangat di hari pertamamu!</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
